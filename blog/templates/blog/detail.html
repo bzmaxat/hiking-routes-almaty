@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <h2>{{ blog.title }}</h2>
+    <center>
+    <img src="{{ blog.image.url }}" class="img-fluid mb-2">
+    </center>
+    <h4>{{ blog.date }}</h4>
+    <h4>Высота: {{ blog.height }} метров</h4>
+    <h4>Сложность: {{ blog.difficulty}}</h4>
+    <h4>{{ blog.description|safe }}</h4>
+    <h4><a href=" {{ blog.route }} ">Link</a></h4>
+
+
+</div>
+{% endblock %}
