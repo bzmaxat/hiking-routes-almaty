@@ -5,11 +5,11 @@
 {% block content %}
 <div class="container">
 
-    <h2>{{ blog.title }}</h2>
     <center>
+    <h2>{{ blog.title }}</h2><br>
     <img src="{{ blog.image.url }}" class="img-fluid mb-2">
     </center>
-    <h4>{{ blog.date }}</h4>
+    <h6>{{ blog.date }}</h6>
     <h4>Высота: {{ blog.height }} метров</h4>
     <h4>Сложность: {{ blog.difficulty}}</h4>
     <h4>{{ blog.description|safe }}</h4>
@@ -17,4 +17,10 @@
 
 
 </div>
+
+<!--<form method="POST" action="{% url 'completeblog' blog.id %}">-->
+<!--    {% csrf_token %}-->
+<!--    <button type="submit">Пройдено</button>-->
+<!--</form>-->
+
 {% endblock %}

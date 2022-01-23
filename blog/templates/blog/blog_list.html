@@ -5,23 +5,21 @@
 {% block content %}
 <div class="container text-center">
     <h1><b>Маршруты выходного дня: горы Алматы</b></h1>
-<!--<h3 class="text-center mb-5"> {{ blogs.count }} blog{{ blogs.count|pluralize }}</h3>-->
     <img src="{% static 'blog/mountains.jpg' %}" class="img-fluid">
 </div><br>
+
 <div class="container">
     <h2>Есть множество однодневных пешеходных маршрутов в Алматинских горах, называемых Заилийским Алатау. Этот горный хребет является северной частью Тянь-Шаня⛰️. Я расскажу вам о 10 тропах.</h2><br>
-<div class="row">
-    {% for blog in blogs %}
-    <div class="col-lg-4 col-md-4">
-    <a href="{% url 'blog:detail' blog.id %}">
-        <img src="{{ blog.image.url }}" class="img-fluid mb-2" height="350" width="350">
-        <h2>{{ blog.title }}</h2>
-    </a>
-    <p>{{ blog.difficulty }}</p>
-
-
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-lg-4 col-md-4">
+            <a href="{% url 'blog:detail' blog.id %}">
+            <img src="{{ blog.image.url }}" class="img-fluid mb-2" height="350" width="350">
+            <h3 >{{ blog.title }}</h3></a>
+            <p>{{ blog.difficulty }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
-</div>
+
 {% endblock %}
