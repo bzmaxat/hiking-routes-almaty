@@ -1,4 +1,10 @@
 from django.contrib import admin
-from .models import Blog
+from .models import Blog, Difficulty
 
-admin.site.register(Blog)
+
+class BlogAdmin(admin.ModelAdmin):
+    readonly_fields = ('date', )
+
+
+admin.site.register(Blog, BlogAdmin)
+admin.site.register(Difficulty)

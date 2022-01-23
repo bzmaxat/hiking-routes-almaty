@@ -4,13 +4,9 @@
 
 {% block content %}
 
-<div class="container text-center" id="content">
-    <h1><b>Маршруты выходного дня: горы Алматы</b></h1><br>
-    <img src="{% static 'blog/mountains.jpg' %}" class="img-fluid" style="align:center;">
-</div><br>
+
 
 <div class="container">
-    <h2>Есть множество однодневных пешеходных маршрутов в Алматинских горах, называемых Заилийским Алатау. Этот горный хребет является северной частью Тянь-Шаня⛰️. Я расскажу вам о 10 тропах.</h2><br>
     <div class="row">
         <div class="col">
             <form action="{% url 'filter' %}" method="GET">

@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
 
-    <center>
+<div class="container">
+    <center><br>
     <h2>{{ blog.title }}</h2><br>
     <img src="{{ blog.image.url }}" class="img-fluid mb-2">
     </center>
@@ -17,10 +17,5 @@
 
 
 </div>
-
-<!--<form method="POST" action="{% url 'completeblog' blog.id %}">-->
-<!--    {% csrf_token %}-->
-<!--    <button type="submit">Пройдено</button>-->
-<!--</form>-->
 
 {% endblock %}

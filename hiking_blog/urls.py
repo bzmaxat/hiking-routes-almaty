@@ -21,8 +21,18 @@ from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.BlogsView.as_view(), name='blog_list'),
+    path('filter/', views.FilterBlogsView.as_view(), name='filter'),
     path('blog/', include('blog.urls')),
+
+    # Auth
+    path('signup/', views.signupuser, name='signupuser'),
+    path('login/', views.loginuser, name='loginuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
+
+    # Blogs
+    path('create/', views.createblog, name='createblog'),
+    path('myblogs/', views.MyBlogsView.as_view(), name='myblogs'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
