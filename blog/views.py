@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from .models import Blog, Difficulty
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User, AnonymousUser
@@ -35,7 +36,10 @@ def MyBlogsView(request):
 class BlogCreateView(CreateView):
     model = Blog
     form_class = BlogForm
-    # fields = ['title', 'description', 'height', 'image', 'difficulty']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class BlogUpdateView(UpdateView):
@@ -46,7 +50,7 @@ class BlogUpdateView(UpdateView):
 
 class BlogDeleteView(DeleteView):
     model = Blog
-    success_url = reverse_lazy('blog_list')
+    success_url = reverse_lazy('myblogs')
     template_name = 'blog/blog_delete.html'
 
 

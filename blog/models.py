@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-DEFAULT_USER_ID = 1
-
 
 class Difficulty(models.Model):
     title = models.CharField("Difficulty", max_length=30)
@@ -24,10 +22,10 @@ class Blog(models.Model):
     difficulty = models.ForeignKey(Difficulty, verbose_name="Difficulty", on_delete=models.SET_NULL, null=True)
     route = models.URLField(blank=True)
     completed = models.BooleanField(null=True, default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=DEFAULT_USER_ID)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.title + ' | ' + str(self.user)
 
     def get_absolute_url(self):
-        return reverse('blog_list')
+        return reverse('myblogs')
