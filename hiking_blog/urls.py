@@ -33,7 +33,7 @@ urlpatterns = [
     path('logout/', views.logoutuser, name='logoutuser'),
 
     # Blogs
-    path('create/', views.BlogCreateView.as_view(), name='createblog'),
+    path('create/', views.BlogCreateView.as_view(), name='create'),
     path('myblogs/', views.MyBlogsView, name='myblogs'),
 ]
 

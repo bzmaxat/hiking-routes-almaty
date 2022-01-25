@@ -16,12 +16,20 @@
                                 <a href="{% url 'blog:blog_detail' blog.id %}">
                                 <h5 class="card-title">{{ blog.title }}</h5></a>
                                 <p class="card-text">{{ blog.difficulty }}</p>
-                                <a href="{% url 'update' blog.id %}">Update</a>
-                                <a href="{% url 'delete' blog.id %}">Delete</a>
+                                <a href="{% url 'update' blog.id %}">Изменить</a>
+                                <a href="{% url 'delete' blog.id %}">Удалить</a>
                             </div>
                         </div>
-                    </div>
+                </div>
                 {% endfor %}
+                <div class="col"><br>
+                        <div class="card" style="width: 16rem;">
+                            <div class="card-body">
+                                <a href="{% url 'create' %}"><img src="{% static 'blog/logo.jpg' %}" class="card-img-top" style="width: 10%;">
+                                Добавить новый маршрут</a>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
     </div><br>
