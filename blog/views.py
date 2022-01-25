@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from .models import Blog, Difficulty
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User, AnonymousUser
@@ -10,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 
 
 class Diffs:
-    """"""
     def get_diffs(self):
         return Difficulty.objects.all()
 
@@ -27,11 +27,27 @@ class BlogDetailView(Diffs, DetailView):
     slug_field = "url"
 
 
-class MyBlogsView(Diffs, ListView):
-    """Мои маршруты"""
-    def get_queryset(self):
-        queryset = Blog.objects.filter(user=self.request.user)
-        return queryset
+def MyBlogsView(request):
+    blogs = Blog.objects.filter(user=request.user)
+    return render(request, 'blog/myblogs.html', {'blogs': blogs})
+
+
+class BlogCreateView(CreateView):
+    model = Blog
+    form_class = BlogForm
+    # fields = ['title', 'description', 'height', 'image', 'difficulty']
+
+
+class BlogUpdateView(UpdateView):
+    model = Blog
+    fields = ['title', 'description', 'height', 'image', 'difficulty']
+    template_name = 'blog/blog_update_form.html'
+
+
+class BlogDeleteView(DeleteView):
+    model = Blog
+    success_url = reverse_lazy('blog_list')
+    template_name = 'blog/blog_delete.html'
 
 
 def signupuser(request):
@@ -67,22 +83,6 @@ def logoutuser(request):
     if request.method == 'POST':
         logout(request)
         return redirect('blog_list')
-
-
-@login_required
-def createblog(request):
-    if request.method == 'GET':
-        return render(request, 'blog/createblog.html', {'form': BlogForm()})
-    else:
-        try:
-            form = BlogForm(request.POST, request.FILES)
-            newblog = form.save(commit=False)
-            newblog.user = request.user
-            newblog.save()
-            return redirect('blog_list')
-        except ValueError:
-            return render(request, 'blog/createblog.html',
-                          {'form': BlogForm(), 'error': 'Bad data passed in. Try again.'})
 
 
 class FilterBlogsView(Diffs, ListView):

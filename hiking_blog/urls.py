@@ -24,6 +24,8 @@ urlpatterns = [
     path('', views.BlogsView.as_view(), name='blog_list'),
     path('filter/', views.FilterBlogsView.as_view(), name='filter'),
     path('blog/', include('blog.urls')),
+    path("blog/<int:pk>/update/", views.BlogUpdateView.as_view(), name='update'),
+    path("blog/<int:pk>/delete/", views.BlogDeleteView.as_view(), name='delete'),
 
     # Auth
     path('signup/', views.signupuser, name='signupuser'),
@@ -31,8 +33,8 @@ urlpatterns = [
     path('logout/', views.logoutuser, name='logoutuser'),
 
     # Blogs
-    path('create/', views.createblog, name='createblog'),
-    path('myblogs/', views.MyBlogsView.as_view(), name='myblogs'),
+    path('create/', views.BlogCreateView.as_view(), name='createblog'),
+    path('myblogs/', views.MyBlogsView, name='myblogs'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

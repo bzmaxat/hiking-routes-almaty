@@ -2,14 +2,15 @@
 {% load static %}
 
 {% block content %}
-<h1>Создать</h1>
+<h1>Удалить маршрут</h1>
 
 <h2>{{ error }}</h2>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
     {{ form.as_p }}
-    <button type="submit">Создать</button>
+    <button class="btn btn-danger" type="submit">Удалить</button>
 </form>
 
 {% endblock %}

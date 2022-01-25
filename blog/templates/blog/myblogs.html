@@ -4,34 +4,20 @@
 
 {% block content %}
 
-
-
 <div class="container">
     <div class="row">
-        <div class="col">
-            <form action="{% url 'filter' %}" method="GET">
-            <h3 class="sear-head editContent">Сложность</h3>
-             <ul class="w3layouts-box-list">
-            {% for diff in view.get_diffs %}
-                <li class="editContent">
-                    <input type="checkbox" class="checked" name="diff" value="{{ diff.id }}">
-                    <span class="span editContent">{{ diff.title }}</span>
-                </li>
-            {% endfor %}
-            </ul>
-            <button type="submit">Найти</button>
-            </form>
-        </div>
         <div class="col-10">
             <div class="row">
-                {% for blog in blog_list %}
+                {% for blog in blogs %}
                 <div class="col"><br>
                         <div class="card" style="width: 16rem;">
                             <img src="{{ blog.image.url }}" class="card-img-top">
                             <div class="card-body">
-                                <a href="{% url 'blog:blog_detail' blog.url %}">
+                                <a href="{% url 'blog:blog_detail' blog.id %}">
                                 <h5 class="card-title">{{ blog.title }}</h5></a>
                                 <p class="card-text">{{ blog.difficulty }}</p>
+                                <a href="{% url 'update' blog.id %}">Update</a>
+                                <a href="{% url 'delete' blog.id %}">Delete</a>
                             </div>
                         </div>
                     </div>

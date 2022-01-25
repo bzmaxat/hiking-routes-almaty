@@ -18,12 +18,12 @@
              <ul class="w3layouts-box-list">
             {% for diff in view.get_diffs %}
                 <li class="editContent">
-                    <input type="checkbox" class="checked" name="diff" value="{{ diff.id }}">
+                    <input type="checkbox" class="form-check-input" name="diff" value="{{ diff.id }}">
                     <span class="span editContent">{{ diff.title }}</span>
                 </li>
             {% endfor %}
             </ul>
-            <button type="submit">Найти</button>
+            <button type="submit" class="btn btn-primary">Найти</button>
             </form>
         </div>
         <div class="col-10">
@@ -33,7 +33,7 @@
                         <div class="card" style="width: 16rem;">
                             <img src="{{ blog.image.url }}" class="card-img-top">
                             <div class="card-body">
-                                <a href="{% url 'blog:blog_detail' blog.url %}">
+                                <a href="{% url 'blog:blog_detail' blog.id %}">
                                 <h5 class="card-title">{{ blog.title }}</h5></a>
                                 <p class="card-text">{{ blog.difficulty }}</p>
                             </div>

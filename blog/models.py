@@ -25,10 +25,9 @@ class Blog(models.Model):
     route = models.URLField(blank=True)
     completed = models.BooleanField(null=True, default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=DEFAULT_USER_ID)
-    url = models.SlugField(max_length=130, unique=True, default='mount')
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("blog_detail", kwargs={"slug": self.url})
+        return reverse('blog_list')

@@ -21,16 +21,12 @@
     <a class="navbar-brand" href="{% url 'blog_list' %}">
       Горные маршруты
     </a>
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item {{ current }}">
-                    <a class="nav-link" href="{% url 'myblogs' %}">Мои маршруты</a>
-                </li>
-        </ul>
-    {% endif %}
     <ul class="nav">
             {% if user.is_authenticated %}
+                <li class="nav-item {{ current }}">
+                    <a class="nav-link" href="{% url 'myblogs' %}" style="color: white;">Мои маршруты</a>
+                </li>
                 <li class="nav-item">
                     <a href="#" onclick="$('#signOutBtn').click()" class="nav-link" style="color: white;">Выйти</a>
                     <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
@@ -55,7 +51,7 @@
 <div class="container">
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="{% url 'blog_list' %}" class="nav-link px-2 text-muted">Home</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
